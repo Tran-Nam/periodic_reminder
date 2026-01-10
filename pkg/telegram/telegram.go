@@ -19,6 +19,7 @@ func SendTelegramMessage(token string, chatID string, text string) error {
 	data := url.Values{}
 	data.Set("chat_id", chatID)
 	data.Set("text", text)
+	fmt.Println(data)
 
 	resp, err := http.PostForm(api, data)
 	if err != nil {
