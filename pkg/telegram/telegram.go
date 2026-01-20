@@ -19,8 +19,8 @@ func SendTelegramMessage(token string, chatID string, text string) error {
 	data := url.Values{}
 	data.Set("chat_id", chatID)
 	data.Set("text", text)
-	fmt.Println(chatID)
-	fmt.Println(token)
+	fmt.Println("chat_id", chatID, "end")
+	fmt.Println("token", token, "end")
 
 	resp, err := http.PostForm(api, data)
 	if err != nil {
