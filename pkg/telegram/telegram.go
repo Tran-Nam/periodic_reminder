@@ -19,8 +19,6 @@ func SendTelegramMessage(token string, chatID string, text string) error {
 	data := url.Values{}
 	data.Set("chat_id", chatID)
 	data.Set("text", text)
-	fmt.Println(chatID)
-	fmt.Println(token)
 
 	resp, err := http.PostForm(api, data)
 	if err != nil {
@@ -45,7 +43,5 @@ func SendMessageFromEnv(text string) error {
 	if chatID == "" {
 		return errors.New("TELEGRAM_CHAT_ID not set")
 	}
-	fmt.Println(token)
-	fmt.Println(chatID)
 	return SendTelegramMessage(token, chatID, text)
 }
