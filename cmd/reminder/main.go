@@ -73,13 +73,15 @@ func main() {
 	log.Printf("Connected to Bot: %s", bot.Self.UserName)
 
 	u := tgbotapi.NewUpdate(0)
-	u.Timeout = 60
-	updates := bot.GetUpdatesChan(u)
+	u.Limit = 5 // get 5 messages
+	updates, _ := bot.GetUpdates(u)
 
-	for update := range updates {
+	lastUpdateID := 0
+	for _, update := range updates {
 		if update.Message == nil {
 			continue
 		}
+		lastUpdateID = update.UpdateID
 		log.Printf("Message: %s", update.Message.Text)
 		msg := update.Message.Text 
 		chatID := update.Message.Chat.ID 
@@ -99,4 +101,7 @@ func main() {
 			bot.Send(msg)
 		}
 	}
+
+	offsetConfig := tgbotapi.NewUpdate(lastUpdateID + 1)
+	bot.GetUpdates(offsetConfig)
 }
