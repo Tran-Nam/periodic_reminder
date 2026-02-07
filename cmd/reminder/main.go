@@ -34,8 +34,10 @@ func getGistContent(gistID, token string) (string, error) {
 
 	var result map[string]interface{}
 	json.NewDecoder(resp.Body).Decode(&result)
+	fmt.Println(result)
 
 	files := result["files"].(map[string]interface{})
+	fmt.Println(files)
 	dbFile := files["database.csv"].(map[string]interface{})
 	return dbFile["content"].(string), nil
 }
