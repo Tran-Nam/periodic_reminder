@@ -64,7 +64,6 @@ func main() {
 	gistID := os.Getenv("GIST_ID")
 	ghToken := os.Getenv("GH_TOKEN")
 
-	fmt.Println(botToken)
 	bot, err := tgbotapi.NewBotAPI(botToken)
 	if err != nil {
 		log.Panic(err)
