@@ -84,11 +84,11 @@ func main() {
 		}
 		lastUpdateID = update.UpdateID
 		log.Printf("Message: %s", update.Message.Text)
-		msg := update.Message.Text 
+		chatMsg := update.Message.Text 
 		chatID := update.Message.Chat.ID 
 
-		if strings.HasPrefix(msg, "/add") {
-			input := strings.TrimPrefix(msg, "/add ")
+		if strings.HasPrefix(chatMsg, "/add") {
+			input := strings.TrimPrefix(chatMsg, "/add ")
 			oldData, _ := getGistContent(gistID, ghToken)
 
 			newData := oldData + fmt.Sprintf("\n%s,%s", os.Getenv("CURRENT_DATE"), input)
@@ -96,7 +96,7 @@ func main() {
 
 			msg := tgbotapi.NewMessage(chatID, "added")
 			bot.Send(msg)
-		} else if msg == "/list" {
+		} else if chatMsg == "/list" {
 			content, _ := getGistContent(gistID, ghToken)
 			msg := tgbotapi.NewMessage(chatID, content)
 			bot.Send(msg)
