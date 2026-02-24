@@ -1,8 +1,8 @@
 name: Reminder
 
 on:
-  schedule:
-    - cron: '* 3 * * *' 
+  # schedule:
+  #   - cron: '* 3 * * *' 
   push:
     branches:
       - main
